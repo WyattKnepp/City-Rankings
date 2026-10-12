@@ -82,5 +82,6 @@ class H(BaseHTTPRequestHandler):
 
     def log_message(self, *a): pass
 
-print("Open http://localhost:8000")
-ThreadingHTTPServer(("127.0.0.1", 8000), H).serve_forever()
+if __name__ == "__main__":
+    print("Open http://localhost:8000")
+    ThreadingHTTPServer(("127.0.0.1", 8000), H).serve_forever()
