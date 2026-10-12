@@ -1,2 +1,4 @@
 .env
 progress.json
+rankings.txt
+__pycache__/

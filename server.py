@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run: python3 server.py  -> open http://localhost:8000"""
+"""Run: python3 server.py [--port N]  -> open http://localhost:3000"""
 import json, os, random, threading, urllib.request, urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
@@ -24,6 +24,8 @@ def summarize(city):
         cache = json.load(open(P("summaries.json"))) if os.path.exists(P("summaries.json")) else {}
     if city in cache:
         return cache[city]
+    if city not in [l.strip() for l in open(P("cities.txt"))]:
+        raise RuntimeError("Unknown city")
     if not KEY:
         raise RuntimeError("No ANTHROPIC_API_KEY found in .env")
     prompt = (f"Give a brief, honest summary of {city} as a place to live. Reply with ONLY a JSON object "
@@ -68,6 +70,8 @@ class H(BaseHTTPRequestHandler):
                 self.send(json.dumps({"fields": FIELDS, "data": summarize(city)}))
             except Exception as e:
                 self.send(json.dumps({"error": str(e)}))
+        elif self.path in ("/states.json", "/coords.json"):
+            self.send(open(P(self.path[1:]), "rb").read())
         else:
             self.send(open(P("index.html"), "rb").read(), "text/html")
 
@@ -83,5 +87,9 @@ class H(BaseHTTPRequestHandler):
     def log_message(self, *a): pass
 
 if __name__ == "__main__":
-    print("Open http://localhost:8000")
-    ThreadingHTTPServer(("127.0.0.1", 8000), H).serve_forever()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--port", type=int, default=3000, help="port to listen on (default 3000)")
+    port = ap.parse_args().port
+    print(f"Open http://localhost:{port}")
+    ThreadingHTTPServer(("127.0.0.1", port), H).serve_forever()

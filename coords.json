@@ -1,0 +1,782 @@
+{
+"New York, NY": [
+40.71,
+-74.01
+],
+"Los Angeles, CA": [
+34.05,
+-118.24
+],
+"Chicago, IL": [
+41.88,
+-87.63
+],
+"Houston, TX": [
+29.76,
+-95.37
+],
+"Phoenix, AZ": [
+33.45,
+-112.07
+],
+"Philadelphia, PA": [
+39.95,
+-75.17
+],
+"San Antonio, TX": [
+29.42,
+-98.49
+],
+"San Diego, CA": [
+32.72,
+-117.16
+],
+"Dallas, TX": [
+32.78,
+-96.8
+],
+"Jacksonville, FL": [
+30.33,
+-81.66
+],
+"Fort Worth, TX": [
+32.75,
+-97.33
+],
+"San Jose, CA": [
+37.34,
+-121.89
+],
+"Austin, TX": [
+30.27,
+-97.74
+],
+"Charlotte, NC": [
+35.23,
+-80.84
+],
+"Columbus, OH": [
+39.96,
+-83.0
+],
+"Indianapolis, IN": [
+39.77,
+-86.16
+],
+"San Francisco, CA": [
+37.77,
+-122.42
+],
+"Seattle, WA": [
+47.61,
+-122.33
+],
+"Denver, CO": [
+39.74,
+-104.99
+],
+"Oklahoma City, OK": [
+35.47,
+-97.52
+],
+"Nashville, TN": [
+36.16,
+-86.78
+],
+"Washington, DC": [
+38.91,
+-77.04
+],
+"El Paso, TX": [
+31.76,
+-106.49
+],
+"Las Vegas, NV": [
+36.17,
+-115.14
+],
+"Boston, MA": [
+42.36,
+-71.06
+],
+"Detroit, MI": [
+42.33,
+-83.05
+],
+"Portland, OR": [
+45.52,
+-122.68
+],
+"Louisville, KY": [
+38.25,
+-85.76
+],
+"Memphis, TN": [
+35.15,
+-90.05
+],
+"Baltimore, MD": [
+39.29,
+-76.61
+],
+"Milwaukee, WI": [
+43.04,
+-87.91
+],
+"Albuquerque, NM": [
+35.08,
+-106.65
+],
+"Tucson, AZ": [
+32.22,
+-110.97
+],
+"Fresno, CA": [
+36.74,
+-119.79
+],
+"Sacramento, CA": [
+38.58,
+-121.49
+],
+"Mesa, AZ": [
+33.42,
+-111.83
+],
+"Atlanta, GA": [
+33.75,
+-84.39
+],
+"Kansas City, MO": [
+39.1,
+-94.58
+],
+"Colorado Springs, CO": [
+38.83,
+-104.82
+],
+"Omaha, NE": [
+41.26,
+-95.93
+],
+"Raleigh, NC": [
+35.78,
+-78.64
+],
+"Miami, FL": [
+25.76,
+-80.19
+],
+"Virginia Beach, VA": [
+36.85,
+-75.98
+],
+"Long Beach, CA": [
+33.77,
+-118.19
+],
+"Oakland, CA": [
+37.8,
+-122.27
+],
+"Minneapolis, MN": [
+44.98,
+-93.27
+],
+"Bakersfield, CA": [
+35.37,
+-119.02
+],
+"Tulsa, OK": [
+36.15,
+-95.99
+],
+"Tampa, FL": [
+27.95,
+-82.46
+],
+"Arlington, TX": [
+32.74,
+-97.11
+],
+"Wichita, KS": [
+37.69,
+-97.34
+],
+"Aurora, CO": [
+39.73,
+-104.83
+],
+"New Orleans, LA": [
+29.95,
+-90.07
+],
+"Cleveland, OH": [
+41.5,
+-81.69
+],
+"Honolulu, HI": [
+21.31,
+-157.86
+],
+"Anaheim, CA": [
+33.84,
+-117.91
+],
+"Henderson, NV": [
+36.04,
+-114.98
+],
+"Orlando, FL": [
+28.54,
+-81.38
+],
+"Lexington, KY": [
+38.04,
+-84.5
+],
+"Stockton, CA": [
+37.96,
+-121.29
+],
+"Riverside, CA": [
+33.95,
+-117.4
+],
+"Irvine, CA": [
+33.68,
+-117.83
+],
+"Corpus Christi, TX": [
+27.8,
+-97.4
+],
+"Newark, NJ": [
+40.74,
+-74.17
+],
+"Santa Ana, CA": [
+33.75,
+-117.87
+],
+"Cincinnati, OH": [
+39.1,
+-84.51
+],
+"Pittsburgh, PA": [
+40.44,
+-80.0
+],
+"Saint Paul, MN": [
+44.95,
+-93.09
+],
+"Greensboro, NC": [
+36.07,
+-79.79
+],
+"St. Louis, MO": [
+38.63,
+-90.2
+],
+"Lincoln, NE": [
+40.81,
+-96.7
+],
+"Plano, TX": [
+33.02,
+-96.7
+],
+"Anchorage, AK": [
+61.22,
+-149.9
+],
+"Durham, NC": [
+35.99,
+-78.9
+],
+"Jersey City, NJ": [
+40.73,
+-74.08
+],
+"Chandler, AZ": [
+33.3,
+-111.84
+],
+"Chula Vista, CA": [
+32.64,
+-117.08
+],
+"Buffalo, NY": [
+42.89,
+-78.88
+],
+"North Las Vegas, NV": [
+36.2,
+-115.12
+],
+"Gilbert, AZ": [
+33.35,
+-111.79
+],
+"Madison, WI": [
+43.07,
+-89.4
+],
+"Reno, NV": [
+39.53,
+-119.81
+],
+"Toledo, OH": [
+41.65,
+-83.54
+],
+"Fort Wayne, IN": [
+41.08,
+-85.14
+],
+"Lubbock, TX": [
+33.58,
+-101.86
+],
+"St. Petersburg, FL": [
+27.77,
+-82.64
+],
+"Laredo, TX": [
+27.51,
+-99.51
+],
+"Irving, TX": [
+32.81,
+-96.95
+],
+"Chesapeake, VA": [
+36.77,
+-76.29
+],
+"Glendale, AZ": [
+33.54,
+-112.19
+],
+"Winston-Salem, NC": [
+36.1,
+-80.24
+],
+"Scottsdale, AZ": [
+33.49,
+-111.93
+],
+"Garland, TX": [
+32.91,
+-96.64
+],
+"Boise, ID": [
+43.62,
+-116.2
+],
+"Norfolk, VA": [
+36.85,
+-76.29
+],
+"Spokane, WA": [
+47.66,
+-117.43
+],
+"Richmond, VA": [
+37.54,
+-77.44
+],
+"Fremont, CA": [
+37.55,
+-121.99
+],
+"Huntsville, AL": [
+34.73,
+-86.59
+],
+"Salt Lake City, UT": [
+40.76,
+-111.89
+],
+"Des Moines, IA": [
+41.59,
+-93.62
+],
+"Birmingham, AL": [
+33.52,
+-86.8
+],
+"Rochester, NY": [
+43.16,
+-77.61
+],
+"Tacoma, WA": [
+47.25,
+-122.44
+],
+"Montgomery, AL": [
+32.37,
+-86.3
+],
+"Charleston, SC": [
+32.78,
+-79.93
+],
+"Providence, RI": [
+41.82,
+-71.41
+],
+"Peoria, IL": [
+40.69,
+-89.59
+],
+"Bloomington, IL": [
+40.48,
+-88.99
+],
+"Fairbanks, AK": [
+64.84,
+-147.72
+],
+"Juneau, AK": [
+58.3,
+-134.42
+],
+"Mobile, AL": [
+30.69,
+-88.04
+],
+"Little Rock, AR": [
+34.75,
+-92.29
+],
+"Fayetteville, AR": [
+36.06,
+-94.16
+],
+"Hartford, CT": [
+41.76,
+-72.68
+],
+"New Haven, CT": [
+41.31,
+-72.92
+],
+"Bridgeport, CT": [
+41.19,
+-73.2
+],
+"Wilmington, DE": [
+39.74,
+-75.55
+],
+"Dover, DE": [
+39.16,
+-75.52
+],
+"Tallahassee, FL": [
+30.44,
+-84.28
+],
+"Fort Lauderdale, FL": [
+26.12,
+-80.14
+],
+"Savannah, GA": [
+32.08,
+-81.09
+],
+"Augusta, GA": [
+33.47,
+-81.97
+],
+"Hilo, HI": [
+19.72,
+-155.09
+],
+"Cedar Rapids, IA": [
+41.98,
+-91.67
+],
+"Davenport, IA": [
+41.52,
+-90.58
+],
+"Idaho Falls, ID": [
+43.49,
+-112.04
+],
+"Coeur d'Alene, ID": [
+47.68,
+-116.78
+],
+"Springfield, IL": [
+39.8,
+-89.64
+],
+"Rockford, IL": [
+42.27,
+-89.09
+],
+"Evansville, IN": [
+37.97,
+-87.57
+],
+"South Bend, IN": [
+41.68,
+-86.25
+],
+"Topeka, KS": [
+39.05,
+-95.68
+],
+"Kansas City, KS": [
+39.11,
+-94.63
+],
+"Bowling Green, KY": [
+36.99,
+-86.44
+],
+"Baton Rouge, LA": [
+30.45,
+-91.15
+],
+"Shreveport, LA": [
+32.53,
+-93.75
+],
+"Worcester, MA": [
+42.26,
+-71.8
+],
+"Springfield, MA": [
+42.1,
+-72.59
+],
+"Annapolis, MD": [
+38.98,
+-76.49
+],
+"Portland, ME": [
+43.66,
+-70.26
+],
+"Bangor, ME": [
+44.8,
+-68.77
+],
+"Grand Rapids, MI": [
+42.96,
+-85.67
+],
+"Lansing, MI": [
+42.73,
+-84.56
+],
+"Duluth, MN": [
+46.79,
+-92.1
+],
+"Rochester, MN": [
+44.02,
+-92.47
+],
+"Springfield, MO": [
+37.21,
+-93.29
+],
+"Jackson, MS": [
+32.3,
+-90.18
+],
+"Gulfport, MS": [
+30.37,
+-89.09
+],
+"Billings, MT": [
+45.78,
+-108.5
+],
+"Missoula, MT": [
+46.87,
+-113.99
+],
+"Asheville, NC": [
+35.6,
+-82.55
+],
+"Wilmington, NC": [
+34.23,
+-77.94
+],
+"Fargo, ND": [
+46.88,
+-96.79
+],
+"Bismarck, ND": [
+46.81,
+-100.78
+],
+"Grand Island, NE": [
+40.93,
+-98.34
+],
+"Manchester, NH": [
+42.99,
+-71.46
+],
+"Trenton, NJ": [
+40.22,
+-74.76
+],
+"Santa Fe, NM": [
+35.69,
+-105.94
+],
+"Las Cruces, NM": [
+32.32,
+-106.76
+],
+"Carson City, NV": [
+39.16,
+-119.77
+],
+"Albany, NY": [
+42.65,
+-73.76
+],
+"Syracuse, NY": [
+43.05,
+-76.15
+],
+"Dayton, OH": [
+39.76,
+-84.19
+],
+"Akron, OH": [
+41.08,
+-81.52
+],
+"Norman, OK": [
+35.22,
+-97.44
+],
+"Eugene, OR": [
+44.05,
+-123.09
+],
+"Bend, OR": [
+44.06,
+-121.31
+],
+"Harrisburg, PA": [
+40.27,
+-76.88
+],
+"Allentown, PA": [
+40.6,
+-75.47
+],
+"Newport, RI": [
+41.49,
+-71.31
+],
+"Columbia, SC": [
+34.0,
+-81.03
+],
+"Greenville, SC": [
+34.85,
+-82.4
+],
+"Sioux Falls, SD": [
+43.55,
+-96.73
+],
+"Rapid City, SD": [
+44.08,
+-103.23
+],
+"Knoxville, TN": [
+35.96,
+-83.92
+],
+"Chattanooga, TN": [
+35.05,
+-85.31
+],
+"Amarillo, TX": [
+35.22,
+-101.83
+],
+"Waco, TX": [
+31.55,
+-97.15
+],
+"Provo, UT": [
+40.23,
+-111.66
+],
+"St. George, UT": [
+37.1,
+-113.58
+],
+"Roanoke, VA": [
+37.27,
+-79.94
+],
+"Burlington, VT": [
+44.48,
+-73.21
+],
+"Montpelier, VT": [
+44.26,
+-72.58
+],
+"Olympia, WA": [
+47.04,
+-122.9
+],
+"Green Bay, WI": [
+44.51,
+-88.02
+],
+"Charleston, WV": [
+38.35,
+-81.63
+],
+"Morgantown, WV": [
+39.63,
+-79.96
+],
+"Cheyenne, WY": [
+41.14,
+-104.82
+],
+"Casper, WY": [
+42.87,
+-106.31
+],
+"Jackson, WY": [
+43.48,
+-110.76
+],
+"Fort Collins, CO": [
+40.59,
+-105.08
+],
+"Grand Junction, CO": [
+39.06,
+-108.55
+],
+"Flagstaff, AZ": [
+35.2,
+-111.65
+],
+"Santa Barbara, CA": [
+34.42,
+-119.7
+]
+}

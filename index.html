@@ -1,5 +1,6 @@
 <!doctype html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>City Rankings</title>
 <style>
 body{font:18px system-ui;max-width:1000px;margin:40px auto;text-align:center;background:#111;color:#eee}
@@ -8,6 +9,9 @@ body{font:18px system-ui;max-width:1000px;margin:40px auto;text-align:center;bac
 .grid button:not(.small){padding:40px 10px}
 .cell{font-size:15px;line-height:1.4;padding:10px 12px;background:#1a1a1a;border-radius:6px}
 .cell.min{display:block;height:0;padding:0;overflow:hidden;background:none}
+#map{position:fixed;inset:0;background:#000b;display:flex;align-items:center;justify-content:center}
+#map .box{background:#181818;border:1px solid #555;border-radius:10px;padding:16px;max-width:90vw;max-height:90vh;overflow:auto}
+#map svg{display:block;max-width:100%;max-height:75vh}
 .label{cursor:pointer;user-select:none}
 .label.min{opacity:.5}
 .label::before{content:"▾ "}
@@ -17,6 +21,18 @@ button{padding:50px 10px;font-size:24px;background:#222;color:#eee;border:1px so
 button:hover{background:#345}
 button.small{padding:6px 14px;font-size:14px}
 ol{text-align:left;display:inline-block}
+@media (max-width:700px){
+  body{margin:12px auto;font-size:16px;padding:0 10px}
+  h1{font-size:22px;margin:8px 0}
+  .grid{grid-template-columns:1fr 1fr;gap:6px 8px}
+  .sp{display:none}
+  .grid button:not(.small){padding:22px 6px;font-size:19px}
+  .grid button.small{padding:10px 6px;font-size:14px}
+  .label{grid-column:1/-1;order:var(--o);padding-top:6px}
+  .cell{order:var(--o);font-size:14px;padding:8px;text-align:left}
+  #a,#b{position:sticky;top:6px;z-index:2;background:#222}
+  .kbd{display:none}
+}
 </style>
 <h1>Where would you rather live?</h1>
 <div id="app"></div>
@@ -69,13 +85,15 @@ async function start() {
 function ask(a, b) {
   return new Promise(res => {
     const n = answers.filter(e => e.w).length + 1;
-    $.innerHTML = `<div class="hint">← / → to choose · Shift+← / → for "Not here" · Comparison ${n} (about ${total} max)</div>
+    $.innerHTML = `<div class="hint"><span class="kbd">← / → to choose · Shift+← / → for "Not here" · </span>Comparison ${n} (about ${total} max)</div>
       <div class="grid">
-        <button id="a"></button><div></div><button id="b"></button>
-        <button class="small" id="xa">Not here</button><div></div><button class="small" id="xb">Not here</button>
-        ${FIELDS.map((f, i) => `<div class="cell ${hidden.has(f) ? "min" : ""}" id="a${i}"></div><div class="label ${hidden.has(f) ? "min" : ""}" data-i="${i}">${f}</div><div class="cell ${hidden.has(f) ? "min" : ""}" id="b${i}"></div>`).join("")}
+        <button id="a"></button><div class="sp"></div><button id="b"></button>
+        <button class="small" id="xa">Not here</button><div class="sp"></div><button class="small" id="xb">Not here</button>
+        <button class="small" id="ma">Show on map</button><div class="sp"></div><button class="small" id="mb">Show on map</button>
+        ${FIELDS.map((f, i) => `<div class="cell ${hidden.has(f) ? "min" : ""}" id="a${i}" style="--o:${i * 3 + 2}"></div><div class="label ${hidden.has(f) ? "min" : ""}" data-i="${i}" style="--o:${i * 3 + 1}">${f}</div><div class="cell ${hidden.has(f) ? "min" : ""}" id="b${i}" style="--o:${i * 3 + 3}"></div>`).join("")}
       </div>
       <button class="small" id="u" ${answers.length ? "" : "disabled"}>Undo</button>`;
+    window.scrollTo(0, 0);
     const $$ = id => document.getElementById(id);
     document.querySelectorAll(".label").forEach(l => l.onclick = () => {
       const i = l.dataset.i, f = FIELDS[i];
@@ -89,6 +107,8 @@ function ask(a, b) {
     const drop = c => { answers.push({x: c}); save(); start(); };
     $$("a").onclick = () => pick(a);
     $$("b").onclick = () => pick(b);
+    $$("ma").onclick = () => showMap(a);
+    $$("mb").onclick = () => showMap(b);
     $$("xa").onclick = () => drop(a);
     $$("xb").onclick = () => drop(b);
     $$("u").onclick = undo;
@@ -108,12 +128,44 @@ async function showSummary(city, side) {
 }
 const FIELDS = ["Weather", "Music Scene", "Nightlife", "Size", "Housing situation",
   "Political climate", "Average age", "Anything concerning", "Anything cool"];
+let geo;
+async function showMap(city) {
+  try {
+    geo ??= await Promise.all(["/states.json", "/coords.json"].map(u => fetch(u).then(r => r.json())));
+  } catch (e) { return alert("Couldn't load map data. Restart server.py and reload the page."); }
+  const [states, coords] = geo, st = city.split(", ").pop(), rings = states[st];
+  if (!rings || !coords[city]) return;
+  const dots = Object.entries(coords).filter(([n]) => n.endsWith(", " + st));
+  const lats = rings.flat().map(p => p[1]), lons = rings.flat().map(p => p[0]);
+  const k = Math.cos((Math.min(...lats) + Math.max(...lats)) / 2 * Math.PI / 180);
+  const x0 = Math.min(...lons), y1 = Math.max(...lats);
+  const X = lon => (lon - x0) * k, Y = lat => y1 - lat;
+  const W = (Math.max(...lons) - x0) * k, H = y1 - Math.min(...lats), pad = Math.max(W, H) * 0.12;
+  const path = rings.map(r => "M" + r.map(p => X(p[0]).toFixed(3) + "," + Y(p[1]).toFixed(3)).join("L") + "Z").join("");
+  const u = Math.max(W, H) / 100, vw = W + 2 * pad + 14 * u, vh = H + 2 * pad;  // 1% of map size
+  const marks = dots.map(([n, [la, lo]]) => {
+    const me = n === city, name = n.slice(0, -4);
+    return `<circle cx="${X(lo)}" cy="${Y(la)}" r="${(me ? 1.1 : 0.7) * u}" fill="${me ? "#e22" : "#999"}"/>
+      <text x="${X(lo) + 1.6 * u}" y="${Y(la) + 0.5 * u}" font-size="${1.8 * u}" fill="${me ? "#fff" : "#bbb"}" font-weight="${me ? 700 : 400}">${esc(name)}</text>`;
+  }).join("");
+  const div = document.createElement("div");
+  div.id = "map";
+  div.innerHTML = `<div class="box"><div style="margin-bottom:8px">${esc(city)}</div>
+    <svg viewBox="${-pad} ${-pad} ${vw} ${vh}" width="${Math.min(760, 600 * vw / vh)}">
+      <path d="${path}" fill="#2a3340" stroke="#678" stroke-width="${0.3 * u}"/>${marks}</svg>
+    <button class="small" id="mc">Close (Esc)</button></div>`;
+  div.onclick = e => { if (e.target === div) closeMap(); };
+  document.body.appendChild(div);
+  document.getElementById("mc").onclick = closeMap;
+}
+const closeMap = () => document.getElementById("map")?.remove();
 let hidden = new Set();
 try { hidden = new Set(JSON.parse(localStorage.hidden)); } catch (e) {}
 const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
 function undo() { answers.pop(); save(); start(); }
 
 document.addEventListener("keydown", e => {
+  if (document.getElementById("map")) { if (e.key === "Escape") closeMap(); return; }
   const id = {ArrowLeft: e.shiftKey ? "xa" : "a", ArrowRight: e.shiftKey ? "xb" : "b"}[e.key];
   const btn = id && document.getElementById(id);
   if (btn) { e.preventDefault(); btn.click(); }
