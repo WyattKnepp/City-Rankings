@@ -1,0 +1,109 @@
+New York, NY
+Los Angeles, CA
+Chicago, IL
+Houston, TX
+Phoenix, AZ
+Philadelphia, PA
+San Antonio, TX
+San Diego, CA
+Dallas, TX
+Jacksonville, FL
+Fort Worth, TX
+San Jose, CA
+Austin, TX
+Charlotte, NC
+Columbus, OH
+Indianapolis, IN
+San Francisco, CA
+Seattle, WA
+Denver, CO
+Oklahoma City, OK
+Nashville, TN
+Washington, DC
+El Paso, TX
+Las Vegas, NV
+Boston, MA
+Detroit, MI
+Portland, OR
+Louisville, KY
+Memphis, TN
+Baltimore, MD
+Milwaukee, WI
+Albuquerque, NM
+Tucson, AZ
+Fresno, CA
+Sacramento, CA
+Mesa, AZ
+Atlanta, GA
+Kansas City, MO
+Colorado Springs, CO
+Omaha, NE
+Raleigh, NC
+Miami, FL
+Virginia Beach, VA
+Long Beach, CA
+Oakland, CA
+Minneapolis, MN
+Bakersfield, CA
+Tulsa, OK
+Tampa, FL
+Arlington, TX
+Wichita, KS
+Aurora, CO
+New Orleans, LA
+Cleveland, OH
+Honolulu, HI
+Anaheim, CA
+Henderson, NV
+Orlando, FL
+Lexington, KY
+Stockton, CA
+Riverside, CA
+Irvine, CA
+Corpus Christi, TX
+Newark, NJ
+Santa Ana, CA
+Cincinnati, OH
+Pittsburgh, PA
+Saint Paul, MN
+Greensboro, NC
+St. Louis, MO
+Lincoln, NE
+Plano, TX
+Anchorage, AK
+Durham, NC
+Jersey City, NJ
+Chandler, AZ
+Chula Vista, CA
+Buffalo, NY
+North Las Vegas, NV
+Gilbert, AZ
+Madison, WI
+Reno, NV
+Toledo, OH
+Fort Wayne, IN
+Lubbock, TX
+St. Petersburg, FL
+Laredo, TX
+Irving, TX
+Chesapeake, VA
+Glendale, AZ
+Winston-Salem, NC
+Scottsdale, AZ
+Garland, TX
+Boise, ID
+Norfolk, VA
+Spokane, WA
+Richmond, VA
+Fremont, CA
+Huntsville, AL
+Salt Lake City, UT
+Des Moines, IA
+Birmingham, AL
+Rochester, NY
+Tacoma, WA
+Montgomery, AL
+Charleston, SC
+Providence, RI
+Peoria, IL
+Bloomington, IL

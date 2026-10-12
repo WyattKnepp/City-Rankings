@@ -1,0 +1,130 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>City Rankings</title>
+<style>
+body{font:18px system-ui;max-width:1000px;margin:40px auto;text-align:center;background:#111;color:#eee}
+.hint{font-size:14px;color:#999}
+.grid{display:grid;grid-template-columns:1fr 150px 1fr;gap:8px 16px;margin:20px 0}
+.grid button:not(.small){padding:40px 10px}
+.cell{font-size:15px;line-height:1.4;padding:10px 12px;background:#1a1a1a;border-radius:6px}
+.cell.min{display:block;height:0;padding:0;overflow:hidden;background:none}
+.label{cursor:pointer;user-select:none}
+.label.min{opacity:.5}
+.label::before{content:"▾ "}
+.label.min::before{content:"▸ "}
+.label{align-self:center;text-align:center;font-weight:600;color:#8ab;font-size:14px}
+button{padding:50px 10px;font-size:24px;background:#222;color:#eee;border:1px solid #555;border-radius:8px;cursor:pointer}
+button:hover{background:#345}
+button.small{padding:6px 14px;font-size:14px}
+ol{text-align:left;display:inline-block}
+</style>
+<h1>Where would you rather live?</h1>
+<div id="app"></div>
+<script>
+// answers = history of events: {a, b, w} (w = winner) or {x: city} (removed)
+let cities, answers, run = 0, total = 0;
+const $ = document.getElementById("app");
+const save = () => fetch("/api/answers", {method:"POST", body:JSON.stringify(answers)});
+const key = (a, b) => a < b ? a + "|" + b : b + "|" + a;
+
+// Old progress files stored plain true/false answers; convert them to pair events.
+function migrate() {
+  if (typeof answers[0] !== "boolean") return;
+  const old = answers; answers = []; let i = 0;
+  const sort = arr => {
+    if (arr.length < 2) return arr;
+    const m = arr.length >> 1, l = sort(arr.slice(0, m)), r = sort(arr.slice(m)), out = [];
+    while (l.length && r.length) {
+      if (i >= old.length) throw 0;
+      const a = l[0], b = r[0], first = old[i++];
+      answers.push({a, b, w: first ? a : b});
+      out.push(first ? l.shift() : r.shift());
+    }
+    return out.concat(l, r);
+  };
+  try { sort(cities); } catch (e) { if (e !== 0) throw e; }
+  save();
+}
+
+async function start() {
+  const token = ++run;
+  const removed = new Set(answers.filter(e => e.x).map(e => e.x));
+  const known = new Map(answers.filter(e => e.w).map(e => [key(e.a, e.b), e.w]));
+  const live = cities.filter(c => !removed.has(c));
+  total = Math.ceil(live.length * Math.log2(Math.max(live.length, 2)));
+  const cmp = (a, b) => known.has(key(a, b)) ? Promise.resolve(known.get(key(a, b)) === a) : ask(a, b);
+  async function msort(arr) {
+    if (arr.length < 2) return arr;
+    const m = arr.length >> 1;
+    const l = await msort(arr.slice(0, m)), r = await msort(arr.slice(m));
+    if (token !== run) throw 0;
+    const out = [];
+    while (l.length && r.length) out.push(await cmp(l[0], r[0]) ? l.shift() : r.shift());
+    return out.concat(l, r);
+  }
+  try { finish(await msort(live)); } catch (e) { if (e !== 0) throw e; }
+}
+
+// resolves true if a is preferred over b; removing a city restarts the sort instead
+function ask(a, b) {
+  return new Promise(res => {
+    const n = answers.filter(e => e.w).length + 1;
+    $.innerHTML = `<div class="hint">← / → to choose · Shift+← / → for "Not here" · Comparison ${n} (about ${total} max)</div>
+      <div class="grid">
+        <button id="a"></button><div></div><button id="b"></button>
+        <button class="small" id="xa">Not here</button><div></div><button class="small" id="xb">Not here</button>
+        ${FIELDS.map((f, i) => `<div class="cell ${hidden.has(f) ? "min" : ""}" id="a${i}"></div><div class="label ${hidden.has(f) ? "min" : ""}" data-i="${i}">${f}</div><div class="cell ${hidden.has(f) ? "min" : ""}" id="b${i}"></div>`).join("")}
+      </div>
+      <button class="small" id="u" ${answers.length ? "" : "disabled"}>Undo</button>`;
+    const $$ = id => document.getElementById(id);
+    document.querySelectorAll(".label").forEach(l => l.onclick = () => {
+      const i = l.dataset.i, f = FIELDS[i];
+      hidden.has(f) ? hidden.delete(f) : hidden.add(f);
+      try { localStorage.hidden = JSON.stringify([...hidden]); } catch (e) {}
+      for (const el of [l, $$("a" + i), $$("b" + i)]) el.classList.toggle("min");
+    });
+    $$("a").textContent = a; $$("b").textContent = b;
+    showSummary(a, "a"); showSummary(b, "b");
+    const pick = w => { answers.push({a, b, w}); save(); res(w === a); };
+    const drop = c => { answers.push({x: c}); save(); start(); };
+    $$("a").onclick = () => pick(a);
+    $$("b").onclick = () => pick(b);
+    $$("xa").onclick = () => drop(a);
+    $$("xb").onclick = () => drop(b);
+    $$("u").onclick = undo;
+  });
+}
+async function showSummary(city, side) {
+  const fill = fn => FIELDS.forEach((f, i) => {
+    const el = document.getElementById(side + i);
+    if (el && document.getElementById(side).textContent === city) el.textContent = fn(f, i);
+  });
+  fill((f, i) => i ? "" : "Loading…");
+  try {
+    const r = await (await fetch("/api/summary?city=" + encodeURIComponent(city))).json();
+    if (r.error) throw new Error(r.error);
+    fill(f => r.data[f] ?? "");
+  } catch (e) { fill((f, i) => i ? "" : "Summary unavailable: " + e.message); }
+}
+const FIELDS = ["Weather", "Music Scene", "Nightlife", "Size", "Housing situation",
+  "Political climate", "Average age", "Anything concerning", "Anything cool"];
+let hidden = new Set();
+try { hidden = new Set(JSON.parse(localStorage.hidden)); } catch (e) {}
+const esc = s => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+function undo() { answers.pop(); save(); start(); }
+
+document.addEventListener("keydown", e => {
+  const id = {ArrowLeft: e.shiftKey ? "xa" : "a", ArrowRight: e.shiftKey ? "xb" : "b"}[e.key];
+  const btn = id && document.getElementById(id);
+  if (btn) { e.preventDefault(); btn.click(); }
+});
+
+function finish(sorted) {
+  const text = sorted.map((c, i) => `${i + 1}. ${c}`).join("\n") + "\n";
+  fetch("/api/rankings", {method:"POST", body:text});
+  $.innerHTML = `<h2>Final rankings (saved to rankings.txt)</h2><ol>${sorted.map(c => `<li>${c}</li>`).join("")}</ol>
+    <div><button class="small" id="u">Undo last</button></div>`;
+  document.getElementById("u").onclick = undo;
+}
+fetch("/api/state").then(r => r.json()).then(s => { cities = s.cities; answers = s.answers; migrate(); start(); });
+</script>

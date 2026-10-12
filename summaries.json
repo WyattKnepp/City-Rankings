@@ -1,0 +1,35 @@
+{
+ "Columbus, OH": {
+  "Weather": "Winters are gray and cold, with January lows averaging about 20\u00b0F and frequent cloud cover. Summers are hot and humid, with July highs around 84\u00b0F.",
+  "Music Scene": "Solid but not huge, with Newport Music Hall (opened 1958) and a steady stream of touring acts and local bands. It lacks the depth and history of cities like Chicago or Cleveland.",
+  "Nightlife": "The Short North and Downtown have good bars, restaurants, and a lively weekend scene. Ohio State football weekends swell the crowds, and many places feel quiet on weeknights.",
+  "Size": "The city proper has about 900,000 people, making it the 14th-largest in the U.S., with a metro area around 2.1 million. It feels big enough for variety but still driving-dependent and spread out.",
+  "Housing situation": "Median home prices are roughly $300,000, which is affordable compared with most coastal cities but has risen fast in recent years. Median one-bedroom rents typically run about $1,300 to $1,500.",
+  "Political climate": "The city and Franklin County lean Democratic, while the state of Ohio has been solidly Republican for years. Expect a split between a progressive urban core and conservative surrounding areas and statehouse.",
+  "Average age": "The median age in Columbus is around 33, younger than the national median of about 39, thanks to the universities and job growth. Many residents are young professionals and students.",
+  "Anything concerning": "The city is car-dependent, with heavy traffic on I-70 and I-71 and limited transit compared with bigger metros. Some neighborhoods have high crime rates, and the job market is more tied to insurance, government, and healthcare than to high-growth industries.",
+  "Anything cool": "The Scioto Mile riverfront, German Village's brick streets, COSI science museum, and the Columbus Zoo in nearby Powell are all good. Affordable housing relative to other big cities and a booming brewery and food scene add to its appeal."
+ },
+ "Santa Ana, CA": {
+  "Weather": "Mild and mostly sunny, with highs around 68\u00b0F in winter and about 84\u00b0F in late summer, and frequent morning marine layer. It's noticeably hotter and drier than coastal OC, and heat waves push highs past 95\u00b0F a few times a year.",
+  "Music Scene": "Smaller than LA's, but it has a real Latino music scene, from banda and norte\u00f1o to regional Mexican shows, plus local punk and hip-hop. The Observatory in Santa Ana books touring acts, but for bigger shows many residents drive 30 to 45 minutes to LA.",
+  "Nightlife": "Limited and mostly centered on Downtown Santa Ana's bars, breweries, and restaurants along 4th Street. It's quiet by big-city standards, so many people head to Costa Mesa, Irvine, or LA on weekends.",
+  "Size": "About 310,000 residents (2020 census) across roughly 27 square miles, making it the largest city in the county by population and the county seat. It feels more urban and dense than the suburban neighborhoods around it.",
+  "Housing situation": "Expensive, with a median home value around $850,000 and typical one-bedroom rents around $2,300 to $2,600. Many households are rent-burdened, and overcrowding is common in some neighborhoods.",
+  "Political climate": "Strongly Democratic, with a large Latino population that makes up the majority of residents. Local politics are active and often focused on housing, policing, and immigration, and the city's politics differ sharply from much of the rest of Orange County.",
+  "Average age": "Young for Orange County, with a median age around 35, and families with children are common. Many residents are working-age adults, and retirees are much less prominent than in neighboring cities.",
+  "Anything concerning": "Poverty is around 20%, higher than the OC average, and property crime and gang activity have been persistent problems in some neighborhoods. Smog and ozone pollution are also a concern, and freeway traffic on the 5 and 55 can be brutal.",
+  "Anything cool": "The Bowers Museum, Discovery Cube, and the historic Downtown district offer solid cultural attractions for a city this size. The food is excellent, with some of the best and most affordable Mexican and Vietnamese cooking in Orange County."
+ },
+ "Toledo, OH": {
+  "Weather": "Winters are cold and gray, with January highs around 33\u00b0F and about 30 inches of snow a year. Summers are hot and humid, with July highs near 83\u00b0F.",
+  "Music Scene": "Toledo has a modest local scene, with jazz and classical through the Glass City Jazz Festival and the Toledo Symphony, plus a steady run of small bar and club shows. Touring acts often skip the city for Columbus, Detroit, or Cleveland.",
+  "Nightlife": "Downtown, the Warehouse District, and the Old West End have a decent set of bars and restaurants. Options thin out quickly outside those few areas, and most places close early.",
+  "Size": "The city has about 265,000 people, and the metro area has roughly 640,000. It feels like a mid-sized Midwestern city, so you'll likely need a car.",
+  "Housing situation": "Housing is cheap, with a median home price around $120,000 to $130,000, well below the national median. Many older homes need repairs, and some neighborhoods have significant vacancy and blight.",
+  "Political climate": "Toledo and Lucas County lean Democratic, while Ohio statewide leans strongly Republican. City politics are largely focused on blight, budgets, and public safety rather than national issues.",
+  "Average age": "The median age is about 34, a bit younger than Ohio's overall median of around 39. The city has a sizable older population as well, and it's not known as a young-professional hub.",
+  "Anything concerning": "Violent crime and poverty are well above national averages, with roughly a quarter of residents in poverty. The 2014 Lake Erie algal bloom that shut off the tap water for about three days left lasting distrust of city water.",
+  "Anything cool": "The Toledo Museum of Art has free general admission and a strong collection, and the Toledo Zoo and Glass City Metropark are both excellent. Lake Erie beaches and the Maumee River are close by, and the Mud Hens provide an affordable night out."
+ }
+}
