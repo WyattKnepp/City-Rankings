@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 D = os.path.dirname(os.path.abspath(__file__))
 P = lambda f: os.path.join(D, f)
+DATA = os.environ.get("DATA_DIR", D)  # where progress.json and rankings.txt live
 
 def load_env():
     if os.path.exists(P(".env")):
@@ -46,8 +47,8 @@ def summarize(city):
     return result
 
 def load_state():
-    if os.path.exists(P("progress.json")):
-        return json.load(open(P("progress.json")))
+    if os.path.exists(os.path.join(DATA, "progress.json")):
+        return json.load(open(os.path.join(DATA, "progress.json")))
     cities = [l.strip() for l in open(P("cities.txt")) if l.strip()]
     random.shuffle(cities)
     return {"cities": cities, "answers": []}
@@ -62,7 +63,7 @@ class H(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == "/api/state":
             s = load_state()
-            json.dump(s, open(P("progress.json"), "w"))
+            json.dump(s, open(os.path.join(DATA, "progress.json"), "w"))
             self.send(json.dumps(s))
         elif self.path.startswith("/api/summary"):
             city = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)["city"][0]
@@ -79,9 +80,9 @@ class H(BaseHTTPRequestHandler):
         body = self.rfile.read(int(self.headers["Content-Length"])).decode()
         if self.path == "/api/answers":
             s = load_state(); s["answers"] = json.loads(body)
-            json.dump(s, open(P("progress.json"), "w"))
+            json.dump(s, open(os.path.join(DATA, "progress.json"), "w"))
         elif self.path == "/api/rankings":
-            open(P("rankings.txt"), "w").write(body)
+            open(os.path.join(DATA, "rankings.txt"), "w").write(body)
         self.send("{}")
 
     def log_message(self, *a): pass
@@ -89,7 +90,7 @@ class H(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=3000, help="port to listen on (default 3000)")
+    ap.add_argument("--port", type=int, default=int(os.environ.get("PORT", 3000)), help="port to listen on (default 3000)")
     port = ap.parse_args().port
     print(f"Open http://localhost:{port}")
     ThreadingHTTPServer(("127.0.0.1", port), H).serve_forever()
